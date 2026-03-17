@@ -44,7 +44,7 @@ async FemaleQuestion(res){
             await this.page.waitForTimeout(2000);
             break;
         
-        case "":
+        case "I am breastfeeding":
             await this.page.getByText('I am breastfeeding', { exact: true }).click();
             await this.page.waitForTimeout(2000);  
             break;
@@ -125,7 +125,6 @@ async screeningDisease(disease){
 async CancerDisease(res){
     if(res==="Yes"){
         await this.page.getByText('Yes', { exact: true }).click();
-
     }else{
         await this.page.getByText('No', { exact: true }).click();
     }

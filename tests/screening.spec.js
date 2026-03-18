@@ -11,5 +11,10 @@ test('Self-Screening',async({page})=>{
     await screeningPage.screeningDisease("I have cancer or had it in the past 5 years");
     await screeningPage.CancerDisease("No");
     await screeningPage.calorieIntake();
+    await screeningPage.currentMedSelect("Ozempic");
+    await screeningPage.OzMg("0.25");
+    await screeningPage.continueCurr("Ozempic");
+    await screeningPage.continuePlan("No");
+    await page.waitForTimeout(3000);
 
 })

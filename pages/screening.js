@@ -5,6 +5,7 @@ export default class ScreeningPage {
       
     }
 
+
     async gotoBlume(){
         await this.page.goto("https://dev-app.blumehealth.com",{waitUntil:'domcontentloaded'});
         await this.page.waitForTimeout(3000);
@@ -159,6 +160,164 @@ async calorieIntake(res){
     }
 }
 
+async currentMedSelect(currmed){
+    switch(currmed){
+        case "Ozempic":
+            await this.page.getByText('Ozempic (Semaglutide)', { exact: true }).click();
+            break;
+
+        case "Wegovy":
+            await this.page.getByText('Wegovy (Semaglutide)', { exact: true }).click();
+            break;
+        
+        case "Mounjaro":
+            await this.page.getByText('Mounjaro (Tirzepatide)', { exact: true }).click();
+            break;
+        
+        case "Saxenda":
+            await this.page.getByText('Saxenda (Liraglutide)', { exact: true }).click();
+            break;
+        
+        default:
+            await this.page.getByText('None of the above', { exact: true }).click();
+            break;
+    }
+}
+
+    async OzMg(mg){
+        switch(mg){
+            case "0.25":
+                await this.page.getByText('0.25 mg', { exact: true }).click();
+                await this.page.waitForTimeout(2000);
+                await this.page.getByRole('button', { name: 'I understand' }).click();
+                break;
+
+            case "0.5":
+                await this.page.getByText('0.5 mg', { exact: true }).click();
+                await this.page.waitForTimeout(2000);
+                await this.page.getByRole('button', { name: 'I understand' }).click();
+                break;
+            
+            case "1":
+                await this.page.getByText('1.0 mg', { exact: true }).click();
+                await this.page.waitForTimeout(2000);
+                await this.page.getByRole('button', { name: 'I understand' }).click();
+                break;
+            
+            default:
+                console.log("No matching dosage found or don't enter mg after the dosage number");
+                break;
+
+        }
+        
+    }
+
+    async wgMg(mg){
+        switch(mg){
+            case "0.25":
+                await this.page.getByText('0.25 mg', { exact: true }).click();
+                await this.page.waitForTimeout(2000);
+                await this.page.getByRole('button', { name: 'I understand' }).click();
+                break;
+            
+            case "0.5":
+                await this.page.getByText('0.5 mg', { exact: true }).click();
+                await this.page.waitForTimeout(2000);
+                await this.page.getByRole('button', { name: 'I understand' }).click();
+                break;
+
+            case "1":
+                await this.page.getByText('1.0 mg', { exact: true }).click();
+                await this.page.waitForTimeout(2000);
+                await this.page.getByRole('button', { name: 'I understand' }).click();
+                break;
+
+            case "1.7":
+                await this.page.getByText('1.7 mg', { exact: true }).click();
+                await this.page.waitForTimeout(2000);
+                await this.page.getByRole('button', { name: 'I understand' }).click();
+                break;
+            
+            case "2.4":
+                await this.page.getByText('2.4 mg', { exact: true }).click();
+                await this.page.waitForTimeout(2000);
+                await this.page.getByRole('button', { name: 'I understand' }).click();
+                break;
+
+            default:
+                console.log("No matching dosage found or don't enter mg after the dosage number");
+                break;
+        }
+
+    }
+    async mjMg(mg){
+        switch(mg){
+            case "2.5":
+                await this.page.getByText('2.5 mg', { exact: true }).click();
+                await this.page.waitForTimeout(2000);
+                await this.page.getByRole('button', { name: 'I understand' }).click();
+                break;
+
+            case "5":
+                await this.page.getByText('5.0 mg', { exact: true }).click();
+                await this.page.waitForTimeout(2000);
+                await this.page.getByRole('button', { name: 'I understand' }).click();
+                break;
+            
+            case "7.5":
+                await this.page.getByText('7.5 mg', { exact: true }).click();
+                await this.page.waitForTimeout(2000);
+                await this.page.getByRole('button', { name: 'I understand' }).click();
+                break;
+            
+            case "10":
+                await this.page.getByText('10.0 mg', { exact: true }).click();
+                await this.page.waitForTimeout(2000);
+                await this.page.getByRole('button', { name: 'I understand' }).click();
+                break;
+
+            case "12.5":
+                await this.page.getByText('12.5 mg', { exact: true }).click();
+                await this.page.waitForTimeout(2000);
+                await this.page.getByRole('button', { name: 'I understand' }).click();
+                break;
+            
+            case "15":
+                await this.page.getByText('15.0 mg', { exact: true }).click();
+                await this.page.waitForTimeout(2000);
+                await this.page.getByRole('button', { name: 'I understand' }).click();
+                break;
+
+             default:
+                console.log("No matching dosage found or don't enter mg after the dosage number");
+                break;
+
+            }
+    }
+
+
+async continueCurr(medKey){
+    if(medKey==="Ozempic"||medKey==="Wegovy"||medKey==="Saxenda"||medKey==="Mounjaro"){
+        await this.page.locator('div.space-y-4').locator('div').nth(0).click();
+        await this.page.waitForTimeout(2000);
+    }else{
+        await this.page.getByText('No, I want to switch to a different medication', { exact: true }).click();
+        await this.page.waitForTimeout(2000);
+    }
+}
+
+async continuePlan(res){
+    if(res==="Yes"){
+        await this.page.getByText('I plan to continue using my current medication until switching over to Blume', { exact: true }).click();
+    }else{
+        await this.page.getByText('More than 2 weeks ago', { exact: true }).click();
+        await this.page.getByRole('button', { name: 'I understand' }).click();
+    }
+}
+
+
+
+   
 
 
 

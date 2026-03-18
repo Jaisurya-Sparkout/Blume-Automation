@@ -315,9 +315,55 @@ async continuePlan(res){
     }
 }
 
+async dob(dobVal){
+    await this.page.getByRole('textbox').fill(dobVal);
+    await this.page.getByRole('button', { name: 'Continue' }).click();
+}
+
+async height(hVal){
+    await this.page.getByRole('textbox').fill(hVal);
+    await this.page.getByRole('button', { name: 'Continue' }).click();
+}
+
+async weight(wVal){
+    await this.page.getByRole('textbox').fill(wVal);
+    await this.page.getByRole('button', { name: 'Continue' }).click();
+}
 
 
-   
+async jointComplaints(comp){
+    switch(comp){
+        case "Knee":
+            await this.page.getByText('Knee complaints', { exact: true }).click();
+            await this.page.getByRole('button', { name: 'Continue' }).click();
+            break;
+        
+        case "Hip":
+            await this.page.getByText('Hip complaints', { exact: true }).click();
+            await this.page.getByRole('button', { name: 'Continue' }).click();
+            break;
+        
+        case "Ankle":
+            await this.page.getByText('Ankle complaints', { exact: true }).click();
+            await this.page.getByRole('button', { name: 'Continue' }).click();
+            break;
+
+        default:
+            await this.page.getByText('None of the above', { exact: true }).click();
+            await this.page.getByRole('button', { name: 'Continue' }).click();
+            await this.page.waitForTimeout(2000);
+            await this.page.getByText('None of the above', { exact: true }).click();
+            await this.page.getByRole('button', { name: 'Continue' }).click();
+            await this.page.waitForTimeout(2000);
+            await this.page.getByRole('button', { name: 'I understand' }).click();
+            break;
+    }
+}
+
+async targetWeight(twVal){
+    await this.page.getByRole('textbox').fill(twVal);
+    await this.page.getByRole('button', { name: 'Continue' }).click();
+}
 
 
 

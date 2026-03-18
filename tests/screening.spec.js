@@ -15,6 +15,11 @@ test('Self-Screening',async({page})=>{
     await screeningPage.OzMg("0.25");
     await screeningPage.continueCurr("Ozempic");
     await screeningPage.continuePlan("No");
-    await page.waitForTimeout(3000);
+    await screeningPage.dob("12121991");
+    await screeningPage.height("183");
+    await screeningPage.weight("100");
+    await screeningPage.jointComplaints();
+    await screeningPage.targetWeight("75");
+    await page.waitForTimeout(5000);
 
 })

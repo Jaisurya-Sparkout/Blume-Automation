@@ -1,3 +1,5 @@
+import { expect } from '@playwright/test';
+
 export default class ScreeningPage {
 
     constructor(page) {
@@ -317,17 +319,32 @@ async continuePlan(res){
 
 async dob(dobVal){
     await this.page.getByRole('textbox').fill(dobVal);
+    await this.page.waitForTimeout(1000);
     await this.page.getByRole('button', { name: 'Continue' }).click();
+    await this.page.waitForTimeout(1000);
+    
 }
 
-async height(hVal){
-    await this.page.getByRole('textbox').fill(hVal);
-    await this.page.getByRole('button', { name: 'Continue' }).click();
+async height(hVal) {
+  const input = this.page.getByRole('textbox');
+  const continueBtn = this.page.getByRole('button', { name: 'Continue' });
+
+  await input.fill(hVal);
+  await input.blur(); 
+
+  await expect(continueBtn).toBeEnabled(); 
+  await continueBtn.click();
 }
 
-async weight(wVal){
-    await this.page.getByRole('textbox').fill(wVal);
-    await this.page.getByRole('button', { name: 'Continue' }).click();
+async weight(wVal) {
+  const input = this.page.getByRole('textbox'); // better than generic CSS
+  const continueBtn = this.page.getByRole('button', { name: 'Continue' });
+
+  await input.fill(wVal);
+  await input.blur(); 
+
+  await expect(continueBtn).toBeEnabled(); 
+  await continueBtn.click();
 }
 
 
@@ -364,6 +381,10 @@ async targetWeight(twVal){
     await this.page.getByRole('textbox').fill(twVal);
     await this.page.getByRole('button', { name: 'Continue' }).click();
 }
+
+// async allergiesScreen(){
+
+// }
 
 
 
